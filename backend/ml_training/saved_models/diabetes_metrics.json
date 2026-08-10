@@ -1,0 +1,86 @@
+{
+  "disease": "diabetes",
+  "feature_cols": [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age"
+  ],
+  "target_col": "Outcome",
+  "positive_label": 1,
+  "best_model": "logistic_regression",
+  "n_rows_after_cleaning": 1200,
+  "n_train": 960,
+  "n_test": 240,
+  "class_balance_positive_rate": 0.3233,
+  "all_model_results": {
+    "logistic_regression": {
+      "accuracy": 0.7458,
+      "precision": 0.6889,
+      "recall": 0.3974,
+      "f1_score": 0.5041,
+      "confusion_matrix": [
+        [
+          148,
+          14
+        ],
+        [
+          47,
+          31
+        ]
+      ]
+    },
+    "decision_tree": {
+      "accuracy": 0.6375,
+      "precision": 0.4458,
+      "recall": 0.4744,
+      "f1_score": 0.4596,
+      "confusion_matrix": [
+        [
+          116,
+          46
+        ],
+        [
+          41,
+          37
+        ]
+      ]
+    },
+    "random_forest": {
+      "accuracy": 0.7208,
+      "precision": 0.6571,
+      "recall": 0.2949,
+      "f1_score": 0.4071,
+      "confusion_matrix": [
+        [
+          150,
+          12
+        ],
+        [
+          55,
+          23
+        ]
+      ]
+    }
+  },
+  "selected_model_metrics": {
+    "accuracy": 0.7458,
+    "precision": 0.6889,
+    "recall": 0.3974,
+    "f1_score": 0.5041,
+    "confusion_matrix": [
+      [
+        148,
+        14
+      ],
+      [
+        47,
+        31
+      ]
+    ]
+  }
+}

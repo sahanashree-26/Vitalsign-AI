@@ -1,0 +1,88 @@
+{
+  "disease": "liver",
+  "feature_cols": [
+    "Age",
+    "Gender",
+    "Total_Bilirubin",
+    "Direct_Bilirubin",
+    "Alkaline_Phosphotase",
+    "Alamine_Aminotransferase",
+    "Aspartate_Aminotransferase",
+    "Total_Protiens",
+    "Albumin",
+    "Albumin_and_Globulin_Ratio"
+  ],
+  "target_col": "Dataset",
+  "positive_label": 1,
+  "best_model": "logistic_regression",
+  "n_rows_after_cleaning": 1200,
+  "n_train": 960,
+  "n_test": 240,
+  "class_balance_positive_rate": 0.3042,
+  "all_model_results": {
+    "logistic_regression": {
+      "accuracy": 0.7708,
+      "precision": 0.6957,
+      "recall": 0.4384,
+      "f1_score": 0.5378,
+      "confusion_matrix": [
+        [
+          153,
+          14
+        ],
+        [
+          41,
+          32
+        ]
+      ]
+    },
+    "decision_tree": {
+      "accuracy": 0.7417,
+      "precision": 0.641,
+      "recall": 0.3425,
+      "f1_score": 0.4464,
+      "confusion_matrix": [
+        [
+          153,
+          14
+        ],
+        [
+          48,
+          25
+        ]
+      ]
+    },
+    "random_forest": {
+      "accuracy": 0.7792,
+      "precision": 0.75,
+      "recall": 0.411,
+      "f1_score": 0.531,
+      "confusion_matrix": [
+        [
+          157,
+          10
+        ],
+        [
+          43,
+          30
+        ]
+      ]
+    }
+  },
+  "selected_model_metrics": {
+    "accuracy": 0.7708,
+    "precision": 0.6957,
+    "recall": 0.4384,
+    "f1_score": 0.5378,
+    "confusion_matrix": [
+      [
+        153,
+        14
+      ],
+      [
+        41,
+        32
+      ]
+    ]
+  }
+}
