@@ -24,12 +24,20 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("vitalsignai")
 
 
+# ---------------------------------------------------------
+# DATABASE
+# ---------------------------------------------------------
+
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
 # Create demo user and sample data
 seed()
 
+
+# ---------------------------------------------------------
+# FASTAPI APP
+# ---------------------------------------------------------
 
 app = FastAPI(
     title="VitalSignAI API",
@@ -38,21 +46,35 @@ app = FastAPI(
 )
 
 
+# ---------------------------------------------------------
+# CORS
+# ---------------------------------------------------------
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://vitalsign-ai.vercel.app",
     ],
+    allow_origin_regex=r"https://vitalsign-ai.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
+# ---------------------------------------------------------
+# GLOBAL ERROR HANDLER
+# ---------------------------------------------------------
+
 @app.exception_handler(Exception)
-async def unhandled_exception_handler(request: Request, exc: Exception):
+async def unhandled_exception_handler(
+    request: Request,
+    exc: Exception,
+):
     """Never leak raw Python tracebacks to the frontend."""
+
     logger.exception(
         "Unhandled error on %s %s",
         request.method,
@@ -67,7 +89,10 @@ async def unhandled_exception_handler(request: Request, exc: Exception):
     )
 
 
-# Routers
+# ---------------------------------------------------------
+# ROUTERS
+# ---------------------------------------------------------
+
 app.include_router(auth.router)
 app.include_router(patients.router)
 app.include_router(predictions.router)
@@ -78,6 +103,10 @@ app.include_router(reports.router)
 app.include_router(settings.router)
 
 
+# ---------------------------------------------------------
+# ROOT
+# ---------------------------------------------------------
+
 @app.get("/")
 def root():
     return {
@@ -85,6 +114,10 @@ def root():
         "service": "VitalSignAI API",
     }
 
+
+# ---------------------------------------------------------
+# HEALTH CHECK
+# ---------------------------------------------------------
 
 @app.get("/api/health")
 def health():
